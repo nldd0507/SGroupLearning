@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .main-box {
+        margin: 10px;
+        border: 3px solid brown;
+        height: 500px;
+        width: 400px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+      #img-layout {
+        height: 200px;
+        width: 99%;
+        border: solid 2px brown;
+      }
+      #paragraph {
+        border: 3px dotted brown;
+        background-color: bisque;
+        height: 200px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-box">
+      <h1>Pragmata</h1>
+      <img id="img-layout" src="https://wallpapercave.com/wp/wp12463497.png" />
+      <div id="paragraph">
+        Đoạn mã CSS bạn vừa đưa ra đang khai báo một class có tên là .main-box.
+        Tuy nhiên, có một lưu ý nhỏ về thuộc tính border để nó có thể hiển thị
+        chính xác trên trình duyệt. Trong CSS, để một đường viền hiện ra, bạn
+        cần ít nhất hai yếu tố: độ dày (width) và kiểu dáng (style). Phân tích
+        đoạn mã của bạn: margin: 10px;: Tạo khoảng cách trống 10px bên ngoài
+        khối. (Đúng) border: 10px;: Đây là chỗ cần điều chỉnh. Nếu bạn chỉ viết
+        10px, trình duyệt sẽ không hiểu bạn muốn vẽ đường viền kiểu gì (nét
+        liền, nét đứt...). border-color: brown;: Xác định màu nâu cho viền.
+        (Đúng) Giải thích về Box Model (Mô hình hộp) Khi bạn làm việc với margin
+        và border, bạn đang tương tác với Box Model. Đây là cách trình duyệt
+        tính toán kích thước của một phần tử: Content: Nội dung bên trong (chữ,
+        ảnh). Padding: Khoảng cách từ nội dung đến viền. Border: Đường viền bao
+        quanh (trong code của bạn là 10px màu nâu). Margin: Khoảng cách từ viền
+        ra các phần tử xung quanh. Mẹo nhỏ: Nếu bạn muốn nội dung bên trong
+        không bị dính sát vào đường viền màu nâu đó, hãy thêm thuộc tính padding
+        (ví dụ: padding: 15px;) vào bên trong dấu ngoặc nhọn nhé! Bạn có muốn
+        mình hướng dẫn cách bo tròn các góc của cái hộp màu nâu này không?
+      </div>
+    </div>
+  </body>
+</html>
