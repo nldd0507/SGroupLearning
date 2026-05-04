@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .main-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      #red_color {
+        color: #b00000;
+      }
+      .inline-block_p {
+        display: inline-block;
+      }
+      #orange_color {
+        color: #d24637;
+      }
+      #pink_color {
+        color: #ca1a70;
+      }
+      #font_small_size {
+        font-size: 6.4px;
+      }
+      .color-box {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+        vertical-align: middle;
+        border: 1px solid #555;
+      }
+
+      .color-444 {
+        background-color: #444;
+      }
+
+      .color-454545 {
+        background-color: #454545;
+      }
+
+      .content-container {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .photo-area {
+        flex: 0 0 350px;
+        margin: 0;
+      }
+
+      .photo-area img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .photo-area figcaption {
+        font-size: 0.85em;
+        color: #888;
+        margin-top: 8px;
+        line-height: 1.4;
+      }
+
+      .text-area {
+        flex: 1;
+      }
+
+      .text-area p {
+        margin-top: 0;
+        margin-bottom: 1.2em;
+        line-height: 1.6;
+      }
+
+      .text-area a {
+        color: #b00;
+        text-decoration: underline;
+      }
+      .kopimi_icon {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 2em;
+      }
+      .divider {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .divider img {
+        width: 40px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body class="main-wrapper">
+    <h1>
+      The
+      <i>best</i>
+      motherfucking website
+    </h1>
+    <p>For real</p>
+    <h2>Styling?</h2>
+    <p>
+      You probably build websites using vim and you think that's hardcore. You
+      think your 4.99KB <span id="red_color">motherfuckingwebsite</span>(.com)
+      is going to get you some award to put on your damn footer as a link. You
+      think your default font is gonna make your website run even on a toaster.
+      Well, guess what, you're
+      <span id="orange_color" style="font-weight: bold"> <u>WRONG</u> </span>,
+      motherfucker.
+    </p>
+    <h2>The best kick-ass website</h2>
+    <p>
+      Let me describe the real perfect-ass website which still has the glory of
+      the past
+      <span id="red_color"> motherfuckingwebsites:</span>
+    </p>
+
+    <ul>
+      <li>
+        Shit doesn't weigh a ton (in fact it's just 34.97 KB when the 27.83KB
+        cat picture below is removed)
+      </li>
+      <li>
+        The page weighs exactly 63.02kB, 93.7% less than the
+        <a href="https://www.google.com">Google home page</a>
+      </li>
+      <li>
+        Fits on your iPhone 1st gen (although it doesn't work on your 16x32
+        Tamagotchi, I'm sorry)
+      </li>
+      <li>Looks almost the same on every screen</li>
+      <li>
+        Every asshole that visits this website can use it without any problem
+        <span id="font_small_size">well, kind of</span>
+      </li>
+      <li>
+        It's <a href="https://www.w3.org/TR/WCAG20/"> accessible </a> , so
+        everyone can enjoy it
+        <span id="font_small_size">
+          but not everyone can read this - this text is Ant-Accessible
+        </span>
+      </li>
+      <li>
+        Shit is even more legible than the fucking two previous versions - and
+        it also has a cleanish style without looking like an
+        <a href="https://en.wikipedia.org/wiki/ARPANET"> ARPANET </a> website
+      </li>
+      <li>
+        Doesn't load massive images or scripts. We should all care about people
+        who still use
+        <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers">IPoAC</a>
+      </li>
+      <li>
+        Uses only free and open-source resources, like this awesome font called
+        "Open Sans"
+        <p id="font_small_size">which btw weighs 15.21kB, wtf</p>
+      </li>
+      <li>
+        It doesn't load your glorious jQuery or jQueryUI with all their fucking
+        styles and shits. Nor Angular or any other framework. This website is
+        proudly made with plain JS
+        <img
+          src="https://thebestmotherfucking.website/static/dd60b11e9762b6e25f6d4ce981a1eeae.svg"
+          width="16"
+        />
+        , CSS3
+        <img
+          src="https://thebestmotherfucking.website/static/45e80336c935b524911a6d3f3767448d.svg"
+          width="16"
+        />
+        and HTML5
+        <img
+          src="https://thebestmotherfucking.website/static/cff75e1839f9200f5b983ebbfbaa65ee.svg"
+          width="16"
+        />. Keep it Vanilla!
+      </li>
+      <li>Doesn't include any tracking service</li>
+      <li>Images aren't forbidden, but when SVG is available JUST USE IT.</li>
+      <li>Use some fucking <span id="red_color">colors</span> .</li>
+      <li>
+        Links don't really need to keep that
+        <span style="color: #0000ee"> shitty blue </span> the browser is giving
+        them: nor that <span style="color: #551a8b"> violetish </span> color
+        when they are marked as visited. Just give them a
+        <a href="https://www.colorhexa.com/0077aa"> nice color </a>
+      </li>
+    </ul>
+    <h2>Well guess what, motherfucker:</h2>
+    <p>
+      This website is even better than the last
+      <a href="http://bettermotherfuckingwebsite.com/"> guy </a> and the
+      <a href="https://motherfuckingwebsite.com/">guy before him</a>.
+    </p>
+    <p>Why?</p>
+    <ul>
+      <li>
+        It's over a
+        <a href="https://en.wikipedia.org/wiki/HTTPS">secure connection</a> - so
+        nobody can spy what we're serving to you (the page might be different
+        for everyone, pshht!).
+      </li>
+      <li>
+        It uses one of the most general
+        <a href="https://en.wikipedia.org/wiki/Generic_top-level_domain"
+          >gTLDs</a
+        >
+        available out there: .website
+      </li>
+      <li>
+        It uses the TLD, too: thebestmotherfucking.website, check out
+        <a href="https://domainr.com/">domainr</a> to do something cool too.
+      </li>
+      <li>
+        It uses the kickass
+        <a href="https://letsencrypt.org/">Let's Encrypt</a> CA (don't you see
+        the gorgeous lock?)
+      </li>
+      <li>
+        It uses <a href="https://letsencrypt.org/">a custom version</a> of the
+        awesome
+        <a href="https://thebestmotherfucking.website/js/jquery-3.5.1.min.js"
+          >ultra-lightweight jQuery</a
+        >
+        /s
+      </li>
+      <li>
+        It probably doesn't support all the web browsers, but that's the best
+        thing - if the user's browser is outdated they will notice and maybe
+        they will switch from
+        <a href="https://jquery.com/">the crap they use</a> to
+        <a
+          href="https://support.microsoft.com/en-US/internet-explorer/internet-explorer-help"
+          >a much cooler browser</a
+        >
+      </li>
+      <li>
+        It uses some cool technologies like
+        <a href="https://www.firefox.com/en-US/">JavaScript</a>,
+        <a href="https://en.wikipedia.org/wiki/HTTP/2">CSS3</a> and
+        <a href="https://enable-cors.org/">HTML5</a>
+      </li>
+      <li>
+        Freaks who are scared of JavaScript will feel safe here since the
+        website doesn't need to have JS enabled to be properly rendered
+      </li>
+      <li>
+        It supports
+        <a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/"
+          >HTTP/2</a
+        >
+      </li>
+      <li>
+        It includes a
+        <a href="https://www.namecheap.com/domains/registration/gtld/website/"
+          >Cache-Control</a
+        >
+        header, so you don't waste your precious bandwidth if you visit the
+        website more than once
+      </li>
+      <li>
+        It allows universal access from every website via
+        <a href="https://github.com/denysvitali/thebestmotherfuckingwebsite/"
+          >CORS</a
+        >
+      </li>
+      <li>It is <a href="https://www.wtfpl.net/">Accessible</a></li>
+      <li>
+        It is hosted on
+        <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers"
+          >GitHub Pages</a
+        >, making it
+        <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers"
+          >almost free</a
+        >
+        to keep this website alive
+      </li>
+      <li>
+        It's
+        <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers"
+          >Open Source</a
+        >, freely available on <a>GitHub</a>, and everybody can contribute to
+        it.
+      </li>
+      <li>
+        It uses the
+        <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers">WTFPL</a>
+        - Do What the Fuck You Want to Public License, which is pretty clear on
+        what you can and what you can't do:
+        <p>0. You just DO WHAT THE FUCK YOU WANT TO.</p>
+      </li>
+    </ul>
+    <h2>Put even less contrast</h2>
+    <p>
+      Yeah, a <span class="color-box color-444"></span>#444 is cool but a
+      <span class="color-box color-454545"></span>#454545 is better.
+    </p>
+    <p>
+      We don't need to break our eyes while looking at a
+      <span id="red_color">motherfuckingwebsite</span>.
+    </p>
+    <h2>Size matters, yeah, but don't exaggerate</h2>
+    <p>
+      Remember, not everybody is blind, and not everybody wants to read a
+      fucking 2 inches letter on a 27 inches screen, so keep it cool. Don't
+      exaggerate in size, but don't make a text that is only readable by ants.
+    </p>
+    <h2>Put some pictures</h2>
+    <div class="content-container">
+      <figure class="photo-area">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Pragmata_cover.jpg/250px-Pragmata_cover.jpg"
+        />
+        <figcaption>A cat, just to keep the context of the website.</figcaption>
+      </figure>
+
+      <div class="text-area">
+        <p>
+          We're not looking at a novel by Stephenie Meyer, this is a
+          <a href="#">motherfuckingwebsite</a>. Add some relevant pictures to
+          give a little bit of context, or to cheer up the reader...
+        </p>
+        <p>
+          The website shouldn't be overfilled with pictures, but it should make
+          the user happy while reading your nonsense words.
+        </p>
+        <p>
+          You see the picture of this cute cat? He's happy, and you should be
+          too.
+        </p>
+      </div>
+    </div>
+    <h2>Yes, even this is satire.</h2>
+    <p>
+      But this doesn't mean you should load your motherfuckingwebsite with
+      shitty animations. Keep it simple, minify its resources and use images
+      responsibly. Remember the IPoAC users, less requests (with a small size) =
+      faster load time! Oh and by the way, this doesn't mean that you should use
+      webpack and put everything in a 10MB main.js file, there are people out
+      there who are still using 56k modems and haven't tried
+      <a href="https://en.wikipedia.org/wiki/Fiber_to_the_x#FTTH"></a>
+      futuristic technologies!
+    </p>
+    <p>
+      That's not entirely true, look at that
+      <span id="red_color">motherfuckingwebsite</span>. It's so minimal that it
+      seems like I'm reading the txt version of the
+      <a href="https://www.rfc-editor.org/rfc/rfc5321.txt"></a>SMTP RFC
+      (RFC5321)
+    </p>
+    <h2>Author</h2>
+    <p>
+      This website was created by an annoyed developer that can be followed on
+      <a href="https://x.com/DenysVitali">X</a>, followed on
+      <a href="https://x.com/DenysVitali">Github</a> or contacted
+      <a href="https://denv.it/"> here, on his ultra-minimalist website</a>
+    </p>
+    <h2>Legal</h2>
+    <!-- <p>
+      This website can be freely copied, modified, altered, distributed without
+      any attribution whatsoever. However, if you feel like this website
+      deserves an attribution, mention it. It won't hurt anybody :) <p>Please, read
+      the <a href="https://thebestmotherfucking.website/LICENSE.txt">license terms.</a></p> Don't worry, it can be read in less than 30 seconds,
+      and it's really worth reading it all.
+    </p> -->
+    <div class="divider">
+      <a href="https://kopimi.com/">
+        <img
+          src="https://thebestmotherfucking.website/static/941845d8d5ead463fdf08e563db91e70.svg"
+        />
+      </a>
+    </div>
+  </body>
+</html>
