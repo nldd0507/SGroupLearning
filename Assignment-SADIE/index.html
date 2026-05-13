@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap&amp;_cacheOverride=1778080905528"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .main-container {
+        margin: 0;
+        padding: 0;
+        margin-top: 30px;
+        justify-items: center;
+      }
+      .box-container {
+        width: 500px;
+        height: 500px;
+        background-image: url("https://cdn-media.sforum.vn/storage/app/media/ctvseo_15/Background%20xanh/background-xanh-1.jpg");
+
+        opacity: 0.9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .title {
+        position: absolute;
+        top: 250px;
+        color: white;
+        font-size: 40px;
+        font-weight: lighter;
+        letter-spacing: 5px;
+        transition: all 0.8s ease;
+      }
+      .title span {
+        font-weight: bold;
+      }
+      .box-container:hover .title {
+        opacity: 111;
+        color: #373737;
+        top: 200px;
+        transition: all 0.8s ease;
+      }
+      .description {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        padding: 0;
+        position: relative;
+        top: 200px;
+        transition: all 0.8s ease;
+        opacity: 0;
+        font-size: 30px;
+      }
+      .bg {
+        position: absolute;
+        top: 500px;
+        width: 500px;
+        height: 500px;
+        background: linear-gradient(to bottom, transparent, #373737);
+        opacity: 0.1;
+        transition: all 0.8s ease;
+      }
+      .box-container:hover .description {
+        opacity: 1;
+        top: 100px;
+        transition: all 0.8s ease;
+      }
+      .box-container:hover .bg {
+        top: 0;
+        opacity: 0.5;
+        transition: all 0.8s ease;
+      }
+      .description p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="box-container">
+        <div class="title">
+          HOLY
+          <span> SADIE </span>
+        </div>
+        <div class="description">
+          <p>Sadie never took her eyes off me.</p>
+          <div>
+            <span>She had a dark souls</span>
+          </div>
+        </div>
+        <div class="bg"></div>
+      </div>
+    </div>
+  </body>
+</html>

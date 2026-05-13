@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap&amp;_cacheOverride=1778080905528"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .main-container {
+        margin: 0;
+        padding: 0;
+        margin-top: 30px;
+        justify-items: center;
+      }
+      .box-container {
+        width: 500px;
+        height: 500px;
+        background-image: url("https://cdn-media.sforum.vn/storage/app/media/ctvseo_15/Background%20xanh/background-xanh-1.jpg");
+
+        opacity: 0.9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .title {
+        position: absolute;
+        top: 250px;
+        color: white;
+        font-size: 40px;
+        font-weight: lighter;
+        letter-spacing: 5px;
+        transition: all 0.5s ease;
+      }
+      .title span {
+        font-weight: bold;
+      }
+      .box-container:hover .title {
+        opacity: 0;
+        color: #373737;
+
+        transition: all 0.5s ease;
+      }
+      .description {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        padding: 0;
+        position: relative;
+        top: 200px;
+        transition: all 0.5s ease;
+        opacity: 0;
+        font-size: 30px;
+      }
+      .box-container:hover .description {
+        opacity: 1;
+        top: 100px;
+        transition: all 0.5s ease;
+      }
+      .description p {
+        margin: 0;
+      }
+      .square-box {
+        box-sizing: border-box;
+        border: 2px solid white;
+        width: 150px;
+        height: 150px;
+
+        display: flex;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: all 0.5s ease;
+      }
+      .box-container:hover .square-box {
+        transition: all 0.5s ease;
+        width: 250px;
+        height: 250px;
+        opacity: 1;
+      }
+      .icon {
+        color: white;
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        opacity: 0;
+        transition: all 0.5s ease;
+        pointer-events: none;
+      }
+      .icon div {
+        display: flex;
+        gap: 20px;
+        margin: 10px 0;
+      }
+      .icon i {
+        transition: all 0.6s;
+      }
+      .top-left {
+        transform: translate(-100px, -100px);
+      }
+      .top-right {
+        transform: translate(100px, -100px);
+      }
+      .bottom-left {
+        transform: translate(-100px, 100px);
+      }
+      .bottom-right {
+        transform: translate(100px, 100px);
+      }
+      .box-container:hover .icon {
+        opacity: 1;
+      }
+      .box-container:hover .icon i {
+        transform: translate(0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="box-container">
+        <div class="title">
+          TENDER
+          <span> HERA </span>
+        </div>
+        <div class="square-box"></div>
+        <div class="icon">
+          <div>
+            <i class="ri-file-pdf-2-line top-left"></i>
+            <i class="ri-image-line top-right"></i>
+          </div>
+          <div>
+            <i class="ri-archive-line bottom-left"></i>
+            <i class="ri-code-s-slash-line bottom-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
