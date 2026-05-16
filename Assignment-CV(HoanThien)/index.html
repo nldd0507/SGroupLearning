@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Jason Stroff - Resume</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap&amp;_cacheOverride=1778080905528"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap"
       rel="stylesheet"
     />
     <link
@@ -17,47 +17,58 @@
     />
   </head>
   <body>
-    <div id="main_box">
-      <div class="header">
-        <div class="header1">
-          <div id="header1_1">J</div>
-          <div id="header1_2">JASON STROFF</div>
+    <div class="cv-container">
+      <header class="cv-header sticky-header">
+        <div class="candidate-meta">
+          <div class="name-initial">J</div>
+          <div class="candidate-name">JASON STROFF</div>
         </div>
-        <ul class="header2">
+        <ul class="social-networks">
           <li>
-            <a href="https://github.com" target="_blank"
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="ri-github-fill"></i
             ></a>
           </li>
           <li>
-            <a href="https://stackoverflow.com" target="_blank"
+            <a
+              href="https://stackoverflow.com"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="ri-stack-overflow-line"></i
             ></a>
           </li>
           <li>
-            <a href="https://linkedin.com" target="_blank"
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="ri-linkedin-fill"></i
             ></a>
           </li>
         </ul>
-      </div>
-
-      <div id="content1">
+      </header>
+      <section class="profile-summary">
         <img
-          id="img1"
+          class="profile-avatar"
           src="https://www.designstub.com/demos/defolio/assets/images/profile-image.jpg"
+          alt="Jason Stroff"
         />
-        <div class="content1_1">
-          <span class="sub_title"> HI THERE </span>
-          <h1>I’m Jason Stroff UI/UX DESIGNER + DEVELOPER based in Florida.</h1>
-          <ul class="content1_1_items">
+        <div class="profile-info">
+          <span class="greeting-tag">HI THERE</span>
+          <h1 class="job-headline">
+            I’m Jason Stroff UI/UX DESIGNER + DEVELOPER based in Florida.
+          </h1>
+          <ul class="metrics-counter">
             <li>
               <strong>6+</strong>
-              <span>Experience</span>
+              <span>Years Experience</span>
             </li>
             <li>
               <strong>89</strong>
-              <span>Projects</span>
+              <span>Projects Completed</span>
             </li>
             <li>
               <strong>52</strong>
@@ -65,24 +76,27 @@
             </li>
           </ul>
         </div>
-      </div>
-      <h2 class="header_underline" style="margin-top: 40px">ABOUT ME</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum
-        ante a porta blandit. Quisque velit tortor, ultricies in quam ut, luctus
-        convallis metus. Nunc vitae felis rutrum, mattis justo quis, bibendum
-        tellus. Integer bibendum eget dolor nec venenatis. Aliquam erat
-        volutpat. Etiam et est vitae turpis accumsan vulputate. Curabitur et
-        vehicula nisl, eu congue dolor. Vivamus nec hendrerit mi Nulla consequat
-        tempor.
-      </p>
-      <div id="download_btn">
-        <a id="download_btn_link">Download Resume </a>
-      </div>
-      <div id="content2">
-        <div class="content2_box">
-          <h2 class="header_underline" style="margin-top: 40px">Core Skills</h2>
-          <ul class="skills_list">
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">ABOUT ME</h2>
+        <p class="biography-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum
+          ante a porta blandit. Quisque velit tortor, ultricies in quam ut,
+          luctus convallis metus. Nunc vitae felis rutrum, mattis justo quis,
+          bibendum tellus. Integer bibendum eget dolor nec venenatis. Aliquam
+          erat volutpat. Etiam et est vitae turpis accumsan vulputate. Curabitur
+          et vehicula nisl, eu congue dolor. Vivamus nec hendrerit mi Nulla
+          consequat tempor.
+        </p>
+        <div class="action-wrapper">
+          <a class="btn-outline" href="#">Download Resume</a>
+        </div>
+      </section>
+      <section class="cv-section grid-2-columns">
+        <div class="skills-group">
+          <h2 class="section-title">Core Skills</h2>
+          <ul class="skills-tags">
             <li>JavaScript</li>
             <li>Node.js</li>
             <li>Express.js</li>
@@ -94,11 +108,9 @@
             <li>HTML</li>
           </ul>
         </div>
-        <div class="content2_box">
-          <h2 class="header_underline" style="margin-top: 40px">
-            Other Skills
-          </h2>
-          <ul class="skills_list">
+        <div class="skills-group">
+          <h2 class="section-title">Other Skills</h2>
+          <ul class="skills-tags">
             <li>Storyblok</li>
             <li>PWAs</li>
             <li>Responsive Web Design</li>
@@ -106,22 +118,19 @@
             <li>Vuetify</li>
           </ul>
         </div>
-      </div>
-
-      <div id="content3">
-        <h2 class="header_underline" style="margin-top: 40px">
-          Work Experience
-        </h2>
-        <div id="content3_box">
-          <div>
-            <span id="year_text"> 2019 - Present </span>
-            <h3 id="office_name">Matrix Media Inc</h3>
-            <span id="department">Full Stack developer</span>
+      </section>
+      <section class="cv-section">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="experience-timeline grid-2-columns">
+          <div class="timeline-block">
+            <span class="work-period">2019 - Present</span>
+            <h3 class="company-title">Matrix Media Inc</h3>
+            <span class="job-title">Full Stack developer</span>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
               sem maximus, ornare metus ut, congue enim. Sed fermentum.
             </p>
-            <ul>
+            <ul class="achievements-list">
               <li>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
                 quis sem maximus, ornare metus ut.
@@ -129,15 +138,15 @@
               <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
             </ul>
           </div>
-          <div>
-            <span id="year_text"> 2018 - 2019 </span>
-            <h3 id="office_name">Lexind</h3>
-            <span id="department">Senior app developer</span>
+          <div class="timeline-block">
+            <span class="work-period">2018 - 2019</span>
+            <h3 class="company-title">Lexind</h3>
+            <span class="job-title">Senior app developer</span>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
               sem maximus, ornare metus ut, congue enim. Sed fermentum.
             </p>
-            <ul>
+            <ul class="achievements-list">
               <li>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
                 quis sem maximus, ornare metus ut.
@@ -150,7 +159,78 @@
             </ul>
           </div>
         </div>
-      </div>
+      </section>
+      <section class="cv-section">
+        <h2 class="section-title">Latest Works</h2>
+        <div class="portfolio-gallery">
+          <div class="gallery-item">
+            <div class="gallery-content">
+              <h3>Tripy mobile app</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                quis sem maximus, ornare metus ut, congue enim. Sed fermentum
+                nulla tellus, quis efficitur mauris tristique efficitur. Aliquam
+                rhoncus sem sed ullamcorper venenatis. Aenean malesuada eu orci
+                non sodales.
+              </p>
+              <a class="btn-outline" href="#">Details</a>
+            </div>
+            <img
+              class="gallery-image"
+              src="https://www.designstub.com/demos/defolio/assets/images/work-1.jpg"
+              alt="Tripy mobile app"
+            />
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-content">
+              <h3>Hello mobile app</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                quis sem maximus, ornare metus ut, congue enim. Sed fermentum
+                nulla tellus, quis efficitur mauris tristique efficitur. Aliquam
+                rhoncus sem sed ullamcorper venenatis. Aenean malesuada eu orci
+                non sodales
+              </p>
+              <a class="btn-outline" href="#">Details</a>
+            </div>
+            <img
+              class="gallery-image"
+              src="https://www.designstub.com/demos/defolio/assets/images/work-2.jpg"
+              alt="Hello mobile app"
+            />
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-content">
+              <h3>Cute cookies app</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                quis sem maximus, ornare metus ut, congue enim. Sed fermentum
+                nulla tellus, quis efficitur mauris tristique efficitur. Aliquam
+                rhoncus sem sed ullamcorper venenatis. Aenean malesuada eu orci
+                non sodales.
+              </p>
+              <a class="btn-outline" href="#">Details</a>
+            </div>
+            <img
+              class="gallery-image"
+              src="https://www.designstub.com/demos/defolio/assets/images/work-3.jpg"
+              alt="Cute cookies app"
+            />
+          </div>
+        </div>
+      </section>
     </div>
+    <footer class="cv-footer">
+      <div class="footer-content">
+        <span class="footer-subtitle">STAY IN TOUCH</span>
+        <h2 class="footer-title">Ready to talk?</h2>
+        <p class="footer-desc">Feel free to contact us</p>
+        <a class="btn-outline footer-btn" href="#">LETS TALK</a>
+      </div>
+      <div class="footer-copyright">
+        © 2022 All rights reserved. Free minimal bootstrap template by
+        Designstub.
+      </div>
+    </footer>
   </body>
 </html>

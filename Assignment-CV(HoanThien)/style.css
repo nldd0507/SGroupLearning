@@ -14,14 +14,22 @@ body {
 .cv-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 20px;
 }
 
 .cv-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1000;
 }
 
 .candidate-meta {
@@ -66,6 +74,12 @@ body {
   border-radius: 50%;
   text-decoration: none;
   font-size: 16px;
+}
+
+.social-networks a:hover {
+  background-color: #f6f8fb;
+  color: #f26464;
+  border: 2px solid #f26464;
 }
 
 .profile-summary {
@@ -188,6 +202,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+}
+
+.skills-tags li:hover {
+  background-color: #ecdfe6;
+  border: 2px solid #f26464;
 }
 
 .skills-tags li {
