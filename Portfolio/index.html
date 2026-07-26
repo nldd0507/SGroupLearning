@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Portfolio | Interactive Multi-Wave Physics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes gradient-bg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-bg 15s ease infinite;
+        }
+
+        /* --- HỆ THỐNG CSS SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        /* Các hướng trượt */
+        .reveal.reveal-up {
+            transform: translateY(50px);
+        }
+
+        .reveal.reveal-left {
+            transform: translateX(-50px);
+        }
+
+        .reveal.reveal-right {
+            transform: translateX(50px);
+        }
+
+        .reveal.reveal-scale {
+            transform: scale(0.92);
+        }
+
+        /* Trạng thái khi hiển thị trên màn hình */
+        .reveal.active {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Độ trễ xếp tầng (Stagger Delays) */
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-100 antialiased overflow-x-hidden">
+
+    <!-- HERO SECTION -->
+    <section id="hero-section" class="relative w-full h-screen overflow-hidden flex items-center justify-center">
+        <!-- Nền Aurora -->
+        <div
+            class="absolute inset-0 bg-gradient-to-tr from-purple-950 via-neutral-950 to-indigo-950 opacity-60 animate-gradient">
+        </div>
+        <!-- Canvas Vật lý -->
+        <canvas id="particle-canvas" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
+
+        <!-- NỘI DUNG HERO SECTION: BỐ CỤC 2 CỘT (SPLIT LAYOUT) -->
+        <div class="relative z-20 max-w-6xl mx-auto px-6 py-20 w-full select-none">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+                <!-- CỘT TRÁI: ẢNH CHÂN DUNG & HIỆU ỨNG BLOB -->
+                <div class="lg:col-span-5 flex justify-center order-1">
+                    <div class="relative w-64 h-72 sm:w-80 sm:h-96 group">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] group-hover:rounded-[50%_50%_33%_67%/55%_27%_73%_45%] transition-all duration-700 ease-in-out opacity-75 blur-md animate-pulse">
+                        </div>
+                        <div
+                            class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-neutral-800 bg-neutral-900 shadow-2xl">
+                            <img src="images/avatar.png" alt="Nguyễn Lê Đình Diệu"
+                                class="absolute inset-0 w-full h-full object-cover object-[center_15%] transition-all duration-500 scale-105 group-hover:scale-110" />
+                        </div>
+                        <div
+                            class="absolute -bottom-4 -right-4 bg-neutral-900/90 border border-neutral-700 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2 text-xs font-mono text-indigo-300">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>IT Student @ DUT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: TYPEWRITER & BIO -->
+                <div class="lg:col-span-7 text-left order-2">
+                    <div
+                        class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/80 backdrop-blur-md text-xs font-mono text-neutral-300 mb-6 shadow-lg">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span>Available for Internship & Projects</span>
+                    </div>
+
+                    <div
+                        class="h-8 sm:h-10 flex items-center text-lg sm:text-2xl font-mono font-medium text-indigo-400 mb-2">
+                        <span class="mr-2 font-bold">&gt;</span>
+                        <span id="typewriter-text" class="text-neutral-200"></span>
+                        <span class="inline-block w-2 sm:w-2.5 h-5 sm:h-6 bg-indigo-500 ml-1 animate-pulse"></span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                        Xin chào, tôi là <br />
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-[0_0_35px_rgba(168,85,247,0.3)]">
+                            Nguyễn Lê Đình Diệu
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-neutral-400 max-w-xl mb-8 leading-relaxed font-sans">
+                        Sinh viên Công nghệ Thông tin chuyên ngành Kỹ thuật Phần mềm tại Bách Khoa Đà Nẵng. Tôi đam mê
+                        xây dựng các kiến trúc phần mềm tối ưu, trải nghiệm người dùng mượt mà và giải quyết bài toán
+                        phức tạp bằng Clean Code.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#projects"
+                            class="px-8 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-500 hover:to-purple-500 transition-all duration-300 shadow-[0_0_25px_rgba(99,102,241,0.4)] hover:shadow-[0_0_35px_rgba(99,102,241,0.6)] hover:-translate-y-0.5">
+                            Xem Dự Án
+                        </a>
+                        <a href="#about"
+                            class="px-8 py-3.5 rounded-full border border-neutral-700 bg-neutral-900/60 hover:bg-neutral-800 font-semibold text-neutral-200 transition-all duration-300 backdrop-blur-md hover:border-neutral-500 hover:-translate-y-0.5">
+                            About Me
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chỉ báo cuộn chuột -->
+        <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-neutral-500 text-xs font-mono tracking-widest uppercase pointer-events-none opacity-80">
+            <span>Scroll</span>
+            <div class="w-5 h-8 border-2 border-neutral-700 rounded-full flex justify-center p-1">
+                <div class="w-1 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+
+        <!-- LỚP PHỦ KHÓI MÙ CHUYỂN TIẾP (GRADIENT HORIZON FADE) -->
+        <div
+            class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent via-neutral-950/80 to-neutral-950 z-20 pointer-events-none">
+        </div>
+    </section>
+
+    <!-- SECTION 1: ARCHITECTURE & MINDSET -->
+    <section id="about"
+        class="scroll-mt-12 relative z-20 bg-neutral-950 pt-16 pb-32 px-6 text-neutral-100 select-none overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Tiêu đề Section (Trượt lên) -->
+            <div class="mb-10 text-center sm:text-left reveal reveal-up">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900/60 text-xs font-mono text-indigo-400 mb-4 shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+                    <span>01 // ARCHITECTURE & MINDSET</span>
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                    Tư duy hệ thống. <br class="hidden sm:block" />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Viết
+                        mã như một nghệ thuật.</span>
+                </h2>
+            </div>
+
+            <!-- KHÔNG GIAN INTERLOCKING (Lưới 12 cột đan xen) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 relative">
+
+                <!-- KHỐI 1: MAIN IDE / CODE EDITOR (Trượt từ trái sang) -->
+                <div
+                    class="lg:col-span-8 relative z-10 rounded-3xl bg-neutral-900/90 border-2 border-neutral-800 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-neutral-700 transition-all duration-500 reveal reveal-left">
+                    <div
+                        class="px-6 py-4 bg-neutral-950/80 border-b border-neutral-800/80 flex items-center justify-between font-mono text-xs text-neutral-400">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                            <span class="ml-4 text-neutral-300 font-semibold flex items-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z" />
+                                </svg>
+                                developer_profile.ts
+                            </span>
+                        </div>
+                        <div class="hidden sm:flex items-center gap-3 text-[11px] text-neutral-500">
+                            <span>UTF-8</span>
+                            <span>TypeScript</span>
+                            <span
+                                class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-bold animate-pulse">●
+                                READY</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="p-6 sm:p-8 font-mono text-sm sm:text-base leading-relaxed overflow-x-auto text-neutral-300">
+                        <div class="text-neutral-500 mb-2">// Định vị năng lực & Triết lý phát triển phần mềm</div>
+                        <div><span class="text-purple-400 font-bold">const</span> <span
+                                class="text-blue-400 font-bold">softwareEngineer</span> = {</div>
+                        <div class="pl-6 py-1">
+                            <span class="text-neutral-400">name:</span> <span class="text-emerald-400">"Nguyễn Lê Đình
+                                Diệu"</span>,
+                        </div>
+                        <div class="pl-6 py-1">
+                            <span class="text-neutral-400">education:</span> <span class="text-emerald-400">"Bách Khoa
+                                Đà Nẵng (DUT)"</span>,
+                        </div>
+                        <div class="pl-6 py-1">
+                            <span class="text-neutral-400">mindset:</span> [
+                            <div class="pl-6 text-amber-300">
+                                "Deep understanding of OOP & Data Structures",<br />
+                                "Memory optimization over brute-force solutions",<br />
+                                "Clean Architecture & maintainable codebase"
+                            </div>
+                            <span class="text-neutral-300">],</span>
+                        </div>
+                        <div class="pl-6 py-1">
+                            <span class="text-neutral-400">currentStatus:</span> <span class="text-cyan-400">"Ready for
+                                complex engineering challenges"</span>,
+                        </div>
+                        <div class="pl-6 py-2">
+                            <span class="text-purple-400 font-bold">executeWork</span>(<span
+                                class="text-orange-400">problem</span>: <span class="text-yellow-300">Problem</span>):
+                            <span class="text-yellow-300">Solution</span> {
+                            <div class="pl-6 text-neutral-300">
+                                <span class="text-purple-400">return</span> <span
+                                    class="text-blue-400">this</span>.analyze(problem).buildCleanCode();
+                            </div>
+                            }
+                        </div>
+                        <div>};</div>
+                        <div class="mt-4 flex items-center gap-2 text-indigo-400 text-xs">
+                            <span>&gt; Console.log(softwareEngineer.executeWork());</span>
+                            <span class="w-2 h-4 bg-indigo-500 animate-pulse inline-block"></span>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute -right-20 -bottom-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/20 transition-all duration-700">
+                    </div>
+                </div>
+
+                <!-- KHỐI 2: FLOATING TECH ARSENAL (Trượt từ phải sang + Delay 100ms) -->
+                <div class="lg:col-span-5 relative z-20 lg:-ml-12 lg:mt-16 reveal reveal-right delay-100">
+                    <div
+                        class="p-8 sm:p-10 rounded-3xl bg-neutral-900/95 border-2 border-neutral-700/80 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-xl relative overflow-hidden group hover:border-purple-500/60 transition-all duration-500">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/30 transition-all duration-500">
+                        </div>
+                        <div class="flex items-center justify-between mb-6 border-b border-neutral-800 pb-4">
+                            <span
+                                class="text-xs font-mono text-purple-400 tracking-widest uppercase font-bold flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span> // TECH ARSENAL
+                            </span>
+                            <span class="text-[10px] font-mono text-neutral-500 bg-neutral-800 px-2 py-1 rounded">STACK
+                                v2026</span>
+                        </div>
+
+                        <div class="space-y-3 font-mono text-sm mb-8">
+                            <div
+                                class="p-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-800 flex items-center justify-between hover:border-purple-500/40 transition-all shadow-inner">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-purple-400 font-bold">01</span>
+                                    <span class="text-white font-semibold">C / C++</span>
+                                </div>
+                                <span
+                                    class="text-xs text-purple-300 bg-purple-950/80 border border-purple-800/50 px-2.5 py-1 rounded-lg">Memory
+                                    / OOP</span>
+                            </div>
+                            <div
+                                class="p-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-800 flex items-center justify-between hover:border-indigo-500/40 transition-all shadow-inner">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-indigo-400 font-bold">02</span>
+                                    <span class="text-white font-semibold">C# (.NET)</span>
+                                </div>
+                                <span
+                                    class="text-xs text-indigo-300 bg-indigo-950/80 border border-indigo-800/50 px-2.5 py-1 rounded-lg">Backend
+                                    / WPF</span>
+                            </div>
+                            <div
+                                class="p-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-800 flex items-center justify-between hover:border-cyan-500/40 transition-all shadow-inner">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-cyan-400 font-bold">03</span>
+                                    <span class="text-white font-semibold">Java & JS/TS</span>
+                                </div>
+                                <span
+                                    class="text-xs text-cyan-300 bg-cyan-950/80 border border-cyan-800/50 px-2.5 py-1 rounded-lg">Fullstack
+                                    Dev</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-[11px] font-mono text-neutral-400 mb-3 uppercase">Frameworks & Databases:
+                            </div>
+                            <div class="flex flex-wrap gap-2 font-mono text-xs">
+                                <span
+                                    class="px-3 py-1.5 rounded-xl bg-neutral-800/80 text-neutral-300 border border-neutral-700/50 hover:bg-neutral-700 transition-colors">Qt
+                                    Framework</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-xl bg-neutral-800/80 text-neutral-300 border border-neutral-700/50 hover:bg-neutral-700 transition-colors">React.js</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-xl bg-neutral-800/80 text-neutral-300 border border-neutral-700/50 hover:bg-neutral-700 transition-colors">Node.js</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-xl bg-neutral-800/80 text-neutral-300 border border-neutral-700/50 hover:bg-neutral-700 transition-colors">SQL
+                                    Server</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-xl bg-neutral-800/80 text-neutral-300 border border-neutral-700/50 hover:bg-neutral-700 transition-colors">Git/GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KHỐI 3: FLOATING TERMINAL PROMPT (Trượt lên + Delay 200ms) -->
+                <div class="lg:col-span-7 relative z-30 lg:-mt-16 lg:mr-12 reveal reveal-up delay-200">
+                    <div
+                        class="p-6 sm:p-8 rounded-3xl bg-neutral-950/95 border-2 border-neutral-800 shadow-[0_25px_60px_rgba(0,0,0,1)] backdrop-blur-2xl hover:border-emerald-500/50 transition-all duration-500">
+                        <div class="flex items-center justify-between font-mono text-xs text-neutral-500 mb-4">
+                            <span class="flex items-center gap-2 text-emerald-400 font-bold">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                terminal@macbook-pro ~ %
+                            </span>
+                            <span>bash - 80x24</span>
+                        </div>
+                        <div class="font-mono text-xs sm:text-sm text-neutral-300 space-y-2">
+                            <div class="flex items-center gap-2 text-neutral-400">
+                                <span class="text-emerald-400">&gt;</span>
+                                <span>dieu --get-current-focus</span>
+                            </div>
+                            <div class="text-indigo-300 bg-indigo-950/40 p-3 rounded-xl border border-indigo-900/50">
+                                "Đang tập trung xây dựng các ứng dụng có kiến trúc phức tạp, tối ưu trải nghiệm UI/UX và
+                                sẵn sàng cho các cơ hội thực tập kỹ thuật phần mềm."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dải điều hướng (Trượt lên + Delay 300ms) -->
+            <div
+                class="mt-8 pt-4 border-t border-neutral-900/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500 reveal reveal-up delay-300">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                    <span>Hệ thống sẵn sàng // Trượt xuống để xem các dự án thực tế</span>
+                </div>
+                <a href="#projects"
+                    class="text-neutral-300 hover:text-white underline decoration-indigo-500 underline-offset-4 font-semibold transition-colors">
+                    Khám phá Featured Projects -&gt;
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: FEATURED ENGINEERING PROJECTS -->
+    <section id="projects"
+        class="scroll-mt-12 relative z-20 bg-neutral-950 pt-6 pb-28 px-6 text-neutral-100 select-none overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Tiêu đề Section -->
+            <div
+                class="mb-10 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-6 reveal reveal-up">
+                <div>
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900/60 text-xs font-mono text-indigo-400 mb-4 shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+                        <span>02 // FEATURED WORKS</span>
+                    </div>
+                    <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                        Sản phẩm thực tế. <br />
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Kiến
+                            trúc phần mềm thực chiến.</span>
+                    </h2>
+                </div>
+                <p class="text-neutral-400 text-sm font-mono max-w-xs text-left">
+                    &gt; Nhấn vào link GitHub hoặc bản Demo để kiểm chứng chất lượng mã nguồn sạch (Clean Code).
+                </p>
+            </div>
+
+            <!-- DANH SÁCH DỰ ÁN -->
+            <div class="space-y-28">
+
+                <!-- ================= DỰ ÁN 1: QT GUI UPGRADE ================= -->
+                <div class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-cyan-600/10 via-indigo-600/10 to-transparent rounded-3xl blur-2xl group-hover:from-cyan-600/20 group-hover:via-indigo-600/20 transition-all duration-700 pointer-events-none">
+                    </div>
+
+                    <!-- Màn hình bên trái -> Trượt từ trái -->
+                    <div
+                        class="lg:col-span-7 relative z-10 rounded-3xl bg-neutral-900/80 border-2 border-neutral-800/80 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] group-hover:border-cyan-500/50 transition-all duration-500 reveal reveal-left">
+                        <div
+                            class="px-5 py-3 bg-neutral-950/90 border-b border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                <span class="ml-2 text-neutral-300 font-semibold">Qt_GUI_Application.exe</span>
+                            </div>
+                            <span
+                                class="text-[10px] text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/50">C++
+                                / Qt Framework</span>
+                        </div>
+                        <div
+                            class="relative aspect-video w-full bg-neutral-950 flex flex-col items-center justify-center p-6 text-center font-mono overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30">
+                            </div>
+                            <div
+                                class="relative z-10 border border-cyan-500/30 bg-cyan-950/20 p-6 rounded-2xl max-w-md backdrop-blur-md">
+                                <div class="text-cyan-400 font-bold text-lg mb-2">// GUI REFACTORING ENGINE</div>
+                                <p class="text-xs text-neutral-300 mb-4 font-sans">Chuyển đổi hoàn toàn kiến trúc Legacy
+                                    Console C++ sang Giao diện Đồ họa hiện đại sử dụng luồng tín hiệu (Signal/Slot).</p>
+                                <div class="flex justify-center gap-2 text-[10px] text-cyan-300">
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Memory
+                                        Safe</span>
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">60 FPS
+                                        Render</span>
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">OOP
+                                        Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thông số bên phải -> Trượt từ phải -->
+                    <div class="lg:col-span-5 relative z-10 space-y-6 text-left reveal reveal-right delay-100">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest font-bold">// DESKTOP
+                                APPLICATION</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">
+                                Nâng cấp & Tối ưu hóa Giao diện Phần mềm C++ (Qt Framework)
+                            </h3>
+                            <p class="text-neutral-400 text-sm sm:text-base leading-relaxed font-sans">
+                                Đồ án tập trung giải quyết bài toán tái cấu trúc (Refactoring): chuyển đổi một chương
+                                trình C++ cũ chạy trên Console khô khan thành ứng dụng giao diện đồ họa (GUI) trực quan,
+                                tốc độ phản hồi cao và dễ bảo trì.
+                            </p>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 space-y-3 font-mono text-xs">
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-cyan-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Thách thức:</strong> Quản lý bộ nhớ thủ công trong
+                                    C++, tránh rò rỉ bộ nhớ (Memory Leak) khi thao tác liên tục với các đối tượng giao
+                                    diện.</div>
+                            </div>
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-cyan-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Giải pháp:</strong> Áp dụng mô hình hướng sự kiện
+                                    (Signal/Slot) của Qt và cấu trúc lại mã nguồn theo chuẩn kiến trúc hướng đối tượng
+                                    OOP.</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-cyan-950/60 border border-cyan-800/50 text-cyan-300 font-mono text-xs">C++</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-cyan-950/60 border border-cyan-800/50 text-cyan-300 font-mono text-xs">Qt
+                                    Framework</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono text-xs">Visual
+                                    Studio</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-5 py-2.5 rounded-full bg-white text-neutral-950 font-semibold text-xs hover:bg-neutral-200 transition-all shadow-lg flex items-center gap-1.5 font-mono">
+                                    <span>Source Code</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= DỰ ÁN 2: ONLINE RESCUE MANAGEMENT SYSTEM ================= -->
+                <div class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-transparent via-emerald-600/10 to-teal-600/10 rounded-3xl blur-2xl group-hover:via-emerald-600/20 group-hover:to-teal-600/20 transition-all duration-700 pointer-events-none">
+                    </div>
+
+                    <!-- Thông số bên trái -> Trượt từ trái -->
+                    <div class="lg:col-span-5 relative z-10 space-y-6 text-left order-2 lg:order-1 reveal reveal-left">
+                        <div>
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">//
+                                SYSTEM ARCHITECTURE & SRS</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">
+                                Hệ thống Phân tích, Điều phối & Quản lý Cứu hộ Trực tuyến
+                            </h3>
+                            <p class="text-neutral-400 text-sm sm:text-base leading-relaxed font-sans">
+                                Một dự án trọng điểm rèn luyện năng lực tư duy kiến trúc hệ thống tổng thể. Từ việc lên
+                                đặc tả yêu cầu phần mềm (SRS), thiết kế sơ đồ cơ sở dữ liệu cho đến mô hình hóa luồng xử
+                                lý điều phối thời gian thực trên bản đồ.
+                            </p>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 space-y-3 font-mono text-xs">
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Bài toán:</strong> Xử lý đồng thời nhiều luồng báo
+                                    cáo sự cố khẩn cấp, đảm bảo tính toàn vẹn dữ liệu và điều phối nhân lực tối ưu nhất.
+                                </div>
+                            </div>
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Kiến trúc:</strong> Xây dựng mô hình quan hệ thực
+                                    thể (ERD) chặt chẽ, áp dụng mô hình phân tầng (Multi-tier Architecture) và luồng
+                                    giao tiếp API thực chiến.</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-emerald-950/60 border border-emerald-800/50 text-emerald-300 font-mono text-xs">System
+                                    Design</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-emerald-950/60 border border-emerald-800/50 text-emerald-300 font-mono text-xs">SQL
+                                    / ERD</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono text-xs">C#
+                                    / .NET</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-5 py-2.5 rounded-full bg-white text-neutral-950 font-semibold text-xs hover:bg-neutral-200 transition-all shadow-lg flex items-center gap-1.5 font-mono">
+                                    <span>Source Code</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Màn hình bên phải -> Trượt từ phải -->
+                    <div
+                        class="lg:col-span-7 relative z-10 rounded-3xl bg-neutral-900/80 border-2 border-neutral-800/80 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] group-hover:border-emerald-500/50 transition-all duration-500 order-1 lg:order-2 reveal reveal-right delay-100">
+                        <div
+                            class="px-5 py-3 bg-neutral-950/90 border-b border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                <span class="ml-2 text-neutral-300 font-semibold">Rescue_Dispatch_Dashboard.web</span>
+                            </div>
+                            <span
+                                class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50">Real-time
+                                Map</span>
+                        </div>
+                        <div
+                            class="relative aspect-video w-full bg-neutral-950 flex flex-col items-center justify-center p-6 text-center font-mono overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30">
+                            </div>
+                            <div
+                                class="relative z-10 border border-emerald-500/30 bg-emerald-950/20 p-6 rounded-2xl max-w-md backdrop-blur-md">
+                                <div class="text-emerald-400 font-bold text-lg mb-2">● LIVE INCIDENT DISPATCHER</div>
+                                <p class="text-xs text-neutral-300 mb-4 font-sans">Mô phỏng bản đồ theo dõi tọa độ và
+                                    phân công lực lượng cứu hộ khẩn cấp với độ trễ cực thấp.</p>
+                                <div class="flex justify-center gap-2 text-[10px] text-emerald-300">
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Entity
+                                        Mapping</span>
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Multi-tier
+                                        SQL</span>
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">REST
+                                        API</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= DỰ ÁN 3: AI RETAIL TECH ================= -->
+                <div class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-transparent rounded-3xl blur-2xl group-hover:from-purple-600/20 group-hover:via-pink-600/20 transition-all duration-700 pointer-events-none">
+                    </div>
+
+                    <!-- Màn hình bên trái -> Trượt từ trái -->
+                    <div
+                        class="lg:col-span-7 relative z-10 rounded-3xl bg-neutral-900/80 border-2 border-neutral-800/80 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] group-hover:border-purple-500/50 transition-all duration-500 reveal reveal-left">
+                        <div
+                            class="px-5 py-3 bg-neutral-950/90 border-b border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                <span class="ml-2 text-neutral-300 font-semibold">Elfa_AI_Negotiation_Protocol.ai</span>
+                            </div>
+                            <span
+                                class="text-[10px] text-purple-400 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800/50">Hackathon
+                                Project</span>
+                        </div>
+                        <div
+                            class="relative aspect-video w-full bg-neutral-950 flex flex-col items-center justify-center p-6 text-center font-mono overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30">
+                            </div>
+                            <div
+                                class="relative z-10 border border-purple-500/30 bg-purple-950/20 p-6 rounded-2xl max-w-md backdrop-blur-md">
+                                <div class="text-purple-400 font-bold text-lg mb-2">// ELFA: AI NEGOTIATION BOT</div>
+                                <p class="text-xs text-neutral-300 mb-4 font-sans">Giao thức trí tuệ nhân tạo đàm phán
+                                    giá tự động với người tiêu dùng trong lĩnh vực bán lẻ hiện đại (Retail Tech).</p>
+                                <div class="flex justify-center gap-2 text-[10px] text-purple-300">
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Algorithm
+                                        Logic</span>
+                                    <span class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Auto
+                                        Strategy</span>
+                                    <span
+                                        class="bg-neutral-900 px-2 py-1 rounded border border-neutral-700">Innovation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thông số bên phải -> Trượt từ phải -->
+                    <div class="lg:col-span-5 relative z-10 space-y-6 text-left reveal reveal-right delay-100">
+                        <div>
+                            <span class="text-xs font-mono text-purple-400 uppercase tracking-widest font-bold">//
+                                INNOVATION & HACKATHON</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">
+                                "Elfa" - Giao thức AI Đàm phán Thương mại Tự động
+                            </h3>
+                            <p class="text-neutral-400 text-sm sm:text-base leading-relaxed font-sans">
+                                Một ý tưởng sáng tạo độc đáo mang tính đột phá cho ngành công nghệ bán lẻ (Retail Tech).
+                                Thể hiện khả năng nghiên cứu, xây dựng tham số thuật toán và tư duy triển khai mô hình
+                                kinh doanh nhanh dưới áp lực cao.
+                            </p>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 space-y-3 font-mono text-xs">
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-purple-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Điểm nhấn:</strong> Cấu trúc logic cho phép AI tự
+                                    động tính toán biên độ lợi nhuận và đưa ra các mức giá thương lượng tối ưu real-time
+                                    với khách hàng.</div>
+                            </div>
+                            <div class="text-neutral-400 flex items-start gap-2">
+                                <span class="text-purple-400 font-bold mt-0.5">&gt;</span>
+                                <div><strong class="text-neutral-200">Kỹ năng:</strong> Xây dựng tham số thuật toán,
+                                    kiểm thử chiến lược tự động (Automated Strategy Testing) và tư duy làm product.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-purple-950/60 border border-purple-800/50 text-purple-300 font-mono text-xs">AI
+                                    Logic</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-purple-950/60 border border-purple-800/50 text-purple-300 font-mono text-xs">Algo
+                                    Testing</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono text-xs">REST
+                                    API</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-5 py-2.5 rounded-full border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs transition-all flex items-center gap-1.5 font-mono">
+                                    <span>Project Specs</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: CONTACT & FOOTER -->
+    <section id="contact"
+        class="scroll-mt-12 relative z-20 bg-neutral-950 pt-32 pb-16 px-6 border-t border-neutral-900 text-neutral-100 select-none overflow-hidden">
+        <div
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-t from-indigo-600/15 via-purple-600/10 to-transparent rounded-t-full blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+
+            <!-- Tiêu đề CTA (Trượt lên) -->
+            <div class="max-w-3xl mx-auto text-center mb-20 reveal reveal-up">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900/60 text-xs font-mono text-indigo-400 mb-6 shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>03 // INITIATE CONNECTION</span>
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Sẵn sàng kiến tạo những <br />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">sản
+                        phẩm phần mềm đột phá.</span>
+                </h2>
+                <p class="text-base sm:text-lg text-neutral-400 font-sans leading-relaxed">
+                    Tôi luôn tìm kiếm cơ hội thực tập, các dự án kỹ thuật phần mềm thách thức và những người đồng đội có
+                    cùng đam mê tối ưu hóa công nghệ. Hãy kết nối ngay!
+                </p>
+            </div>
+
+            <!-- LƯỚI THẺ LIÊN HỆ (Xếp tầng Delay 100 -> 300) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-24">
+
+                <!-- Thẻ 1 -->
+                <div onclick="copyEmail()"
+                    class="group relative p-8 rounded-3xl bg-neutral-900/60 border-2 border-neutral-800 hover:border-indigo-500/60 transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-lg hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] hover:-translate-y-1 reveal reveal-up delay-100">
+                    <div class="flex items-center justify-between mb-8">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <span id="copy-status"
+                            class="text-[11px] font-mono text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-lg border border-indigo-800/50">Click
+                            to Copy</span>
+                    </div>
+                    <div>
+                        <div class="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">// EMAIL WORK
+                        </div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono truncate">dinhdieu@example.com
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 2 -->
+                <a href="https://linkedin.com" target="_blank"
+                    class="group relative p-8 rounded-3xl bg-neutral-900/60 border-2 border-neutral-800 hover:border-cyan-500/60 transition-all duration-300 flex flex-col justify-between shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] hover:-translate-y-1 reveal reveal-up delay-200">
+                    <div class="flex items-center justify-between mb-8">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span
+                            class="text-[11px] font-mono text-cyan-400 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/50">Connect
+                            -&gt;</span>
+                    </div>
+                    <div>
+                        <div class="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">// NETWORK</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono">LinkedIn Profile</div>
+                    </div>
+                </a>
+
+                <!-- Thẻ 3 -->
+                <a href="https://github.com" target="_blank"
+                    class="group relative p-8 rounded-3xl bg-neutral-900/60 border-2 border-neutral-800 hover:border-purple-500/60 transition-all duration-300 flex flex-col justify-between shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] hover:-translate-y-1 reveal reveal-up delay-300">
+                    <div class="flex items-center justify-between mb-8">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </div>
+                        <span
+                            class="text-[11px] font-mono text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-lg border border-purple-800/50">Source
+                            Code -&gt;</span>
+                    </div>
+                    <div>
+                        <div class="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">// REPOSITORIES
+                        </div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono">GitHub Profile</div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div
+                class="pt-12 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs text-neutral-500 reveal reveal-up delay-400">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>System Operational // Based in Da Nang, Vietnam</span>
+                </div>
+                <div class="text-center sm:text-right">
+                    <div>&copy; 2026 Nguyễn Lê Đình Diệu. All rights reserved.</div>
+                    <div class="text-[11px] text-neutral-600 mt-1">Built with HTML5 Canvas, Tailwind CSS & Clean
+                        Architecture.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT ENGINE VẬT LÝ & SCROLL REVEAL -->
+    <script>
+        // 1. --- HỆ THỐNG SCROLL REVEAL (INTERSECTION OBSERVER) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -80px 0px', // Kích hoạt hiệu ứng trước khi khối chạm đáy màn hình 80px
+                threshold: 0.1 // Thấy 10% khối là kích hoạt ngay
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Chỉ chạy 1 lần để mượt máy
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+
+        // 2. --- ENGINE VẬT LÝ SÓNG HẠT HERO ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('hero-section');
+
+        let particles = [];
+        const gap = 28;
+        let mouse = { x: 0, y: 0, inside: false };
+        let ripples = [];
+        let time = 0;
+
+        function resizeCanvas() {
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            initGrid();
+        }
+
+        class Ripple {
+            constructor(x, y, amplitude = 4.5) {
+                this.x = x;
+                this.y = y;
+                this.radius = 0;
+                this.maxRadius = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+                this.amplitude = amplitude;
+                this.active = true;
+            }
+
+            update() {
+                this.radius += 12;
+                this.amplitude *= 0.96;
+                if (this.radius > this.maxRadius || this.amplitude < 0.1) {
+                    this.active = false;
+                }
+            }
+        }
+
+        function triggerRipple(x, y, amplitude = 4.5) {
+            ripples.push(new Ripple(x, y, amplitude));
+        }
+
+        class Particle {
+            constructor(x, y) {
+                this.baseX = x;
+                this.baseY = y;
+                this.x = x;
+                this.y = y;
+                this.vx = 0;
+                this.vy = 0;
+            }
+
+            update() {
+                let dBaseX = this.baseX - this.x;
+                let dBaseY = this.baseY - this.y;
+                this.vx += dBaseX * 0.06;
+                this.vy += dBaseY * 0.06;
+                this.vx *= 0.82;
+                this.vy *= 0.82;
+
+                if (mouse.inside) {
+                    let dx = this.x - mouse.x;
+                    let dy = this.y - mouse.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 220) {
+                        let force = (220 - distance) / 220;
+                        let angle = Math.atan2(dy, dx);
+                        this.vx += Math.cos(angle) * force * 12;
+                        this.vy += Math.sin(angle) * force * 12;
+                    }
+                }
+
+                ripples.forEach(ripple => {
+                    let rdx = this.baseX - ripple.x;
+                    let rdy = this.baseY - ripple.y;
+                    let rDistance = Math.sqrt(rdx * rdx + rdy * rdy);
+                    let thickness = 120;
+                    let diff = Math.abs(rDistance - ripple.radius);
+
+                    if (diff < thickness) {
+                        let waveForce = (thickness - diff) / thickness * ripple.amplitude;
+                        let angle = Math.atan2(rdy, rdx);
+                        this.vx += Math.cos(angle) * waveForce * 8;
+                        this.vy += Math.sin(angle) * waveForce * 8;
+                    }
+                });
+
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+
+            draw() {
+                let opacity = 0.12;
+
+                if (mouse.inside) {
+                    let dx = this.x - mouse.x;
+                    let dy = this.y - mouse.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 220) opacity += (1 - distance / 220) * 0.95;
+                }
+
+                ripples.forEach(ripple => {
+                    let rdx = this.baseX - ripple.x;
+                    let rdy = this.baseY - ripple.y;
+                    let rDistance = Math.sqrt(rdx * rdx + rdy * rdy);
+                    let diff = Math.abs(rDistance - ripple.radius);
+                    if (diff < 120) {
+                        opacity += ((120 - diff) / 120) * 0.6;
+                    }
+                });
+
+                if (!mouse.inside && ripples.length === 0) {
+                    let ambientWave = Math.sin(this.baseY * 0.006 - time * 0.05) * Math.cos(this.baseX * 0.003);
+                    opacity += (ambientWave + 1) * 0.12;
+                }
+
+                opacity = Math.min(opacity, 1);
+                ctx.fillStyle = `hsla(${240 + Math.sin(time * 0.01) * 30}, 80%, 70%, ${opacity})`;
+
+                ctx.beginPath();
+                let size = opacity > 0.4 ? 1.6 : 1;
+                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initGrid() {
+            particles = [];
+            for (let y = gap / 2; y < canvas.height; y += gap) {
+                for (let x = gap / 2; x < canvas.width; x += gap) {
+                    particles.push(new Particle(x, y));
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            time++;
+
+            ripples.forEach(ripple => ripple.update());
+            ripples = ripples.filter(ripple => ripple.active);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        let lastWaveTime = 0;
+        const WAVE_COOLDOWN = 1500;
+
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+            mouse.inside = true;
+        });
+
+        container.addEventListener('mouseenter', (e) => {
+            mouse.inside = true;
+            const now = Date.now();
+            if (now - lastWaveTime > WAVE_COOLDOWN) {
+                lastWaveTime = now;
+                const rect = container.getBoundingClientRect();
+                triggerRipple(e.clientX - rect.left, e.clientY - rect.top, 3.5);
+            }
+        });
+
+        container.addEventListener('mouseleave', (e) => {
+            mouse.inside = false;
+            const now = Date.now();
+            if (now - lastWaveTime > WAVE_COOLDOWN) {
+                lastWaveTime = now;
+                const rect = container.getBoundingClientRect();
+                triggerRipple(e.clientX - rect.left, e.clientY - rect.top, 4.5);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+
+        resizeCanvas();
+        animate();
+
+        setTimeout(() => {
+            triggerRipple(canvas.width / 2, canvas.height / 2, 5.5);
+            lastWaveTime = Date.now();
+        }, 100);
+
+        // 3. --- TYPEWRITER EFFECT ---
+        const typewriterElement = document.getElementById('typewriter-text');
+        const phrases = [
+            "Sinh viên Kỹ thuật Phần mềm.",
+            "Đam mê tối ưu hóa & Clean Code.",
+            "Phát triển hệ thống C/C++, .NET & Web.",
+            "Biến ý tưởng phức tạp thành sản phẩm thực tế."
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 80;
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 35;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 80;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2500;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        typeEffect();
+
+        // 4. --- COPY EMAIL ---
+        function copyEmail() {
+            const email = "dinhdieu@example.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const statusEl = document.getElementById("copy-status");
+                statusEl.innerText = "✓ Copied!";
+                statusEl.className = "text-[11px] font-mono text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-800/50 transition-all";
+
+                setTimeout(() => {
+                    statusEl.innerText = "Click to Copy";
+                    statusEl.className = "text-[11px] font-mono text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-lg border border-indigo-800/50 transition-all";
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+
+</html>
